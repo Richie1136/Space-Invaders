@@ -16,3 +16,8 @@ h1 {
   color: blue;
   background-color: lime;
 }
+
+.invader {
+  background-color: pink;
+  border-radius: 10px;
+}
