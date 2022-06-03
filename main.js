@@ -4,6 +4,7 @@ let currentShooterIndex = 200
 let width = 300
 let direction = 1
 let invadersId;
+let goingRight = true
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div')
@@ -63,10 +64,19 @@ const moveInvaders = () => {
   const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width - 1
   removeInvader()
 
-  if (rightEdge) {
+  if (rightEdge && goingRight) {
     for (let i = 0; i < alienInvaders.length; i++) {
       alienInvaders[i] += width + 1
       direction -= 1
+      goingRight = false
+    }
+  }
+
+  if (leftEdge && !goingRight) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += width - 1
+      direction = 1
+      goingRight = true
     }
   }
 
