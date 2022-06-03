@@ -2,6 +2,8 @@ const grid = document.querySelector('.grid')
 
 let currentShooterIndex = 200
 let width = 300
+let direction = 1
+let invadersId;
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div')
@@ -59,6 +61,21 @@ document.addEventListener('keydown', moveShooter)
 const moveInvaders = () => {
   const leftEdge = alienInvaders[0] % width === 0
   const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width - 1
+  removeInvader()
 
+  if (rightEdge) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += width - 1
+      direction -= 1
+    }
+  }
 
+  for (let i = 0; i < alienInvaders.length; i++) {
+    alienInvaders[i] += direction
+  }
+  draw()
 }
+
+invadersId = setInterval(() => {
+  moveInvaders()
+}, 1000);
