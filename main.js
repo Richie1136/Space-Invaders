@@ -26,6 +26,12 @@ const draw = () => {
 
 draw()
 
+const removeInvader = () => {
+  for (let i = 0; i < alienInvaders.length; i++) {
+    squares[alienInvaders[i]].classList.remove('invader')
+  }
+}
+
 
 squares[currentShooterIndex].classList.add('shooter')
 
@@ -53,4 +59,6 @@ document.addEventListener('keydown', moveShooter)
 const moveInvaders = () => {
   const leftEdge = alienInvaders[0] % width === 0
   const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width - 1
+
+
 }
