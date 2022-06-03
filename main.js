@@ -1,6 +1,7 @@
 const grid = document.querySelector('.grid')
 
 let currentShooterIndex = 200
+let width = 300
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div')
@@ -27,3 +28,23 @@ draw()
 
 
 squares[currentShooterIndex].classList.add('shooter')
+
+
+const moveShooter = (evemt) => {
+  squares[currentShooterIndex].classList.remove('shooter')
+  switch (event.key) {
+    case 'ArrowLeft':
+      if (currentShooterIndex % width !== 0) {
+        currentShooterIndex -= 1
+      }
+      break;
+    case 'ArrowRight':
+      if (currentShooterIndex % width < width - 1) {
+        currentShooterIndex += 1
+      }
+  }
+  squares[currentShooterIndex].classList.add('shooter')
+
+}
+
+document.addEventListener('keydown', moveShooter)
