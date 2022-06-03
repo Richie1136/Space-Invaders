@@ -38,7 +38,7 @@ const removeInvader = () => {
 squares[currentShooterIndex].classList.add('shooter')
 
 
-const moveShooter = (evemt) => {
+const moveShooter = (event) => {
   squares[currentShooterIndex].classList.remove('shooter')
   switch (event.key) {
     case 'ArrowLeft':
@@ -65,7 +65,7 @@ const moveInvaders = () => {
 
   if (rightEdge) {
     for (let i = 0; i < alienInvaders.length; i++) {
-      alienInvaders[i] += width - 1
+      alienInvaders[i] += width + 1
       direction -= 1
     }
   }
