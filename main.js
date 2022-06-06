@@ -1,7 +1,7 @@
 const grid = document.querySelector('.grid')
 
-let currentShooterIndex = 200
-let width = 300
+let currentShooterIndex = 202
+let width = 15
 let direction = 1
 let invadersId;
 let goingRight = true
@@ -39,18 +39,15 @@ const removeInvader = () => {
 squares[currentShooterIndex].classList.add('shooter')
 
 
-const moveShooter = (event) => {
+const moveShooter = (e) => {
   squares[currentShooterIndex].classList.remove('shooter')
-  switch (event.key) {
+  switch (e.key) {
     case 'ArrowLeft':
-      if (currentShooterIndex % width !== 0) {
-        currentShooterIndex -= 1
-      }
+      if (currentShooterIndex % width !== 0) currentShooterIndex -= 1
       break;
     case 'ArrowRight':
-      if (currentShooterIndex % width < width - 1) {
-        currentShooterIndex += 1
-      }
+      if (currentShooterIndex % width < width - 1) currentShooterIndex += 1
+      break
   }
   squares[currentShooterIndex].classList.add('shooter')
 
@@ -67,7 +64,7 @@ const moveInvaders = () => {
   if (rightEdge && goingRight) {
     for (let i = 0; i < alienInvaders.length; i++) {
       alienInvaders[i] += width + 1
-      direction -= 1
+      direction = - 1
       goingRight = false
     }
   }
@@ -84,8 +81,11 @@ const moveInvaders = () => {
     alienInvaders[i] += direction
   }
   draw()
+
+  if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
+    console.log("Game Over")
+    clearInterval(invadersId)
+  }
 }
 
-invadersId = setInterval(() => {
-  moveInvaders()
-}, 1000);
+invadersId = setInterval(moveInvaders, 100);
