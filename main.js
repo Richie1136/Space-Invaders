@@ -96,3 +96,15 @@ const moveInvaders = () => {
 }
 
 invadersId = setInterval(moveInvaders, 600);
+
+
+const shoot = (e) => {
+  let laserId
+  let currentLaserIndex = currentShooterIndex
+  const moveLaser = () => {
+    squares[currentLaserIndex].classList.remove('laser')
+    currentLaserIndex -= width
+    squares[currentLaserIndex].classList.add('laser')
+
+  }
+}
