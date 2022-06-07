@@ -1,10 +1,12 @@
 const grid = document.querySelector('.grid')
+const resultsDisplay = document.querySelector('.results')
 
 let currentShooterIndex = 202
 let width = 15
 let direction = 1
 let invadersId;
 let goingRight = true
+// let resultsDisplay = ""
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div')
@@ -84,6 +86,7 @@ const moveInvaders = () => {
 
   if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
     console.log("Game Over")
+    resultsDisplay.innerHTML = "Game Over"
     clearInterval(invadersId)
   }
 }
