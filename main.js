@@ -6,7 +6,6 @@ let width = 15
 let direction = 1
 let invadersId;
 let goingRight = true
-// let resultsDisplay = ""
 
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div')
@@ -85,10 +84,15 @@ const moveInvaders = () => {
   draw()
 
   if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-    console.log("Game Over")
     resultsDisplay.innerHTML = "Game Over"
     clearInterval(invadersId)
   }
+  for (let i = 0; i < alienInvaders.length; i++) {
+    if (alienInvaders[i] > squares.length) {
+      resultsDisplay.innerHTML = "Game Over"
+      clearInterval(invadersId)
+    }
+  }
 }
 
-invadersId = setInterval(moveInvaders, 100);
+invadersId = setInterval(moveInvaders, 600);
